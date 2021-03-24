@@ -61,9 +61,12 @@ class ItemValidationTest(FunctionalTest):
 		self.browser.get(self.live_server_url)
 		self.get_item_input_box().send_keys('Banter too thick')
 		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Banter too thick')
+		self.get_item_input_box().send_keys('Banter too thick')
+		self.get_item_input_box().send_keys(Keys.ENTER)
 		
 		self.wait_for(lambda: self.assertTrue(self.get_error_element().is_displayed()))
-		
+
 		# She starts typing in the input box to clear the error
 		self.get_item_input_box().send_keys('a')
 		
